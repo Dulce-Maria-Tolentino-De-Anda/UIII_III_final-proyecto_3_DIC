@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="txtcodigo" name="txtcodigo" class="form-control" value="{{ misproductos.id_producto }}" readonly>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtmodelo" name="txtmodelo" class="form-control" value="{{ misproductos.modelo }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txttipo_camara" name="txttipo_camara" class="form-control" value="{{ misproductos.tipo_camara }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtprecio" name="txtprecio" class="form-control" value="{{ misproductos.precio }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtresolucion" name="txtresolucion" class="form-control" value="{{ misproductos.resolucion_mp }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="date" id="txtfecha" name="txtfecha" class="form-control" value="{{ fecha_agregada }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

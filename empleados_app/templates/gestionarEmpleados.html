@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1>Registrar Empleado</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarEmpleado/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="txtcodigo" name="txtcodigo" class="form-control" placeholder="Código Empleado" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtapellidos" name="txtapellidos" class="form-control" placeholder="Apellidos" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" placeholder="Dirección" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="numtelefono" name="numtelefono" class="form-control" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="email" id="txtemail" name="txtemail" class="form-control" placeholder="Correo Electrónico" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="date" id="datefecha_nacimiento" name="datefecha_nacimiento" class="form-control" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <img class="w-50" src="{% static 'img/empleados.jpeg' %}" width="400" height="400" alt="">
+        <h1>Listado de Empleados</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID Empleado</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in mis_empleados %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ e.id_empleado }}</td>
+                        <td>{{ e.nombre }}</td>
+                        <td>{{ e.apellidos }}</td>
+                        <td>{{ e.direccion }}</td>
+                        <td>{{ e.telefono }}</td>
+                        <td>{{ e.email }}</td>
+                        <td>{{ e.fecha_nacimiento }}</td>
+                        <td>
+                            <a href="seleccionarEmpleado/{{ e.id_empleado }}" class="btn btn-info">Editar</a>
+                            <a href="borrarEmpleado/{{ e.id_empleado }}" class="btn btn-danger">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

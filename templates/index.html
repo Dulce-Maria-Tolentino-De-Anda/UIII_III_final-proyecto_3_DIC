@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}<title> Camaras fotograficas Dulce</title>{% endblock titulo %}
+{% block cuerpo %}
+<div class="d-flex flex-column justify-content align-items-center">
+    <h1 class="mt-4 mb-4">Camaras fotograficas Dulce</h1>
+    <img class="w-50" src="{% static 'img/general.jpeg' %}" width="500" height="500" alt="">
+</div>
+{% endblock cuerpo %}
